@@ -1,0 +1,34 @@
+{
+    "name": "InputControl",
+    "maps": [
+        {
+            "name": "KeyCode",
+            "id": "6263bfe5-b39a-417f-b10c-c306e8269ac1",
+            "actions": [
+                {
+                    "name": "Any Key",
+                    "type": "Button",
+                    "id": "27023462-7d6a-4d8e-af34-ee50c9f4b7d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3fbc440-c5b2-4652-a8ec-b98049cedfe0",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Any Key",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -85,6 +85,12 @@ public class GlobalKeySound : MonoBehaviour {
             case RawKey.M:
             case RawKey.Space:
             case RawKey.Return:
+            case RawKey.LeftControl:
+            case RawKey.LeftWindows:
+            case RawKey.LeftButtonAlt:
+            case RawKey.LeftShift:
+            case RawKey.Tab:
+            case RawKey.CapsLock:
                 return true;
         }
 

@@ -11,12 +11,7 @@ public class GlobalKeySound : MonoBehaviour {
         Instance = this;
     }
 
-    [Serializable]
-    public class KeySoundData {
-        public string sign;
-        public AudioClip audioClip;
-    }
-    public List<KeySoundData> keyPressSound; // 绑定的按键音效文件
+    public List<SoundData> keyPressSound; // 绑定的按键音效文件
     public TMP_Dropdown _dropdown;
     private AudioSource audioSource;
     void Start() {
@@ -101,4 +96,10 @@ public class GlobalKeySound : MonoBehaviour {
         RawInput.Stop();
         RawInput.OnKeyDown -= OnKeyPressed;
     }
+}
+
+[Serializable]
+public class SoundData {
+    public string sign;
+    public AudioClip audioClip;
 }

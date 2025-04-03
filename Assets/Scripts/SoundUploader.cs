@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using SFB; // 需要导入SimpleFileBrowser插件
 
 public class SoundUploader : MonoBehaviour {
-    public List<GlobalKeySound.KeySoundData> CustomerSoundDatas = new List<GlobalKeySound.KeySoundData>();
+    public List<SoundData> CustomerSoundDatas = new List<SoundData>();
     public Button uploadButton;
     public Button quitButton;
 
@@ -48,7 +49,7 @@ public class SoundUploader : MonoBehaviour {
 
                 // 避免重复添加
                 if (!GlobalKeySound.Instance.keyPressSound.Exists(x => x.sign == fileName)) {
-                    GlobalKeySound.Instance.keyPressSound.Add(new GlobalKeySound.KeySoundData {
+                    GlobalKeySound.Instance.keyPressSound.Add(new SoundData {
                         audioClip = clip,
                         sign = fileName
                     });
@@ -61,7 +62,6 @@ public class SoundUploader : MonoBehaviour {
         // 更新下拉菜单
         GlobalKeySound.Instance.RefreshDropDown();
     }
-
 
     public void UploadSound() {
         // 使用跨平台文件浏览器
@@ -109,7 +109,7 @@ public class SoundUploader : MonoBehaviour {
             if (string.IsNullOrEmpty(www.error)) {
                 AudioClip clip = www.GetAudioClip();
                 Debug.Log($"成功加载：{Path.GetFileNameWithoutExtension(path)}");
-                GlobalKeySound.Instance.keyPressSound.Add(new GlobalKeySound.KeySoundData() {
+                GlobalKeySound.Instance.keyPressSound.Add(new SoundData() {
                     sign = Path.GetFileNameWithoutExtension(path),
                     audioClip = clip,
                 });

@@ -1957,16 +1957,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyPressSound:
-  - sign: "\u666E\u901A\u952E\u76D8"
-    audioClip: {fileID: 8300000, guid: 5686d09850a1fec4c80c2fc53cad2015, type: 3}
+  - sign: "\u51FB\u4E2D\u94C1"
+    audioClip: {fileID: 8300000, guid: f61ef6078795706418f8f0034bcb9030, type: 3}
+  - sign: "\u6728\u9C7C"
+    audioClip: {fileID: 8300000, guid: d04b6d5856be53049b1e0d0bb2b95072, type: 3}
+  - sign: "\u6728\u8D28\u952E\u76D8"
+    audioClip: {fileID: 8300000, guid: a4089a817fccc5644b81acd5a5c11680, type: 3}
   - sign: "\u8F7B\u8584\u952E\u76D8"
     audioClip: {fileID: 8300000, guid: c9bb12e46aa046c49b3b56a583bfb71b, type: 3}
   - sign: "\u9EBB\u5C06\u952E\u76D8"
     audioClip: {fileID: 8300000, guid: 3ef2d8d2fcc567c4483aa58e2d84f48a, type: 3}
-  - sign: "\u554A"
-    audioClip: {fileID: 8300000, guid: 59e3213ec6fe7e84895b088b6d241260, type: 3}
-  - sign: "\u6728\u9C7C"
-    audioClip: {fileID: 8300000, guid: d04b6d5856be53049b1e0d0bb2b95072, type: 3}
   _dropdown: {fileID: 469796770}
 --- !u!114 &963194231
 MonoBehaviour:

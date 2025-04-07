@@ -34,7 +34,10 @@ public class GlobalBGM : MonoBehaviour {
                 clip = VARIABLE.audioClip;
             }
         }
-        if (BGMSound != null) {
+
+        if (clip == null) {
+            audioSource.Stop();
+        } else if (BGMSound != null) {
             audioSource.Stop();
             audioSource.clip = clip;
             audioSource.loop = true;

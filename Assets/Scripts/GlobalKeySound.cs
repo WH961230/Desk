@@ -27,6 +27,7 @@ public class GlobalKeySound : MonoBehaviour {
             return;
         }
         RawInput.OnKeyDown += OnKeyPressed;
+        RawInput.OnKeyDown += TypeExperience.Instance.OnKeyDown;
         Debug.Log("键盘监听已启动");
 
         RefreshDropDown();
@@ -50,7 +51,7 @@ public class GlobalKeySound : MonoBehaviour {
         }
     }
 
-    private bool IsKeyCodePress(RawKey key) {
+    public static bool IsKeyCodePress(RawKey key) {
         switch (key) {
             case RawKey.Q:
             case RawKey.W:

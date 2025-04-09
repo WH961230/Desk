@@ -1,4 +1,6 @@
-﻿namespace UnityRawInput
+﻿using System;
+
+namespace UnityRawInput
 {
     public enum RawKey : uint
     {

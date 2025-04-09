@@ -5,12 +5,15 @@ using System.IO;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using SFB; // 需要导入SimpleFileBrowser插件
+using SFB;
+using UnityEngine.Events; // 需要导入SimpleFileBrowser插件
 
 public class SoundUploader : MonoBehaviour {
     public List<SoundData> CustomerSoundDatas = new List<SoundData>();
     public Button uploadButton;
     public Button quitButton;
+    public Button backButton;
+    public UnityEvent backEvent;
 
     private string soundFolderPath;
 
@@ -19,6 +22,9 @@ public class SoundUploader : MonoBehaviour {
         Directory.CreateDirectory(soundFolderPath);
         uploadButton.onClick.AddListener(UploadSound);
         quitButton.onClick.AddListener(QuitGame);
+        backButton.onClick.AddListener(() => {
+            backEvent?.Invoke();
+        });
         StartCoroutine(LoadAllUserSounds());
     }
 

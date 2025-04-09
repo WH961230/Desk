@@ -48,6 +48,8 @@ public class GlobalKeySound : MonoBehaviour {
         }
         if (keyPressSound != null && isKeyCode) {
             audioSource.PlayOneShot(clip);
+            ScreenEdgeDetection.Instance.OnEnterTopEdge();
+            DropWhenType.Instance.DropItemInstance(key);
         }
     }
 

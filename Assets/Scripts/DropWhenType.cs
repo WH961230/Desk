@@ -7,11 +7,14 @@ using Random = UnityEngine.Random;
 
 public class DropWhenType : MonoBehaviour {
     public Transform DropPos;
+    public Transform DropParent;
     public float DropAlpha;
+    public int DropMax;
     public List<DropData> Datas;
     public static DropWhenType Instance;
     private List<GameObject> Instances = new List<GameObject>();
     private Dictionary<string, RawKey> Dic = new Dictionary<string, RawKey>();
+    private bool Open;
 
     private void Awake() {
         Instance = this;
@@ -50,14 +53,31 @@ public class DropWhenType : MonoBehaviour {
         }
     }
 
+    public void OpenFunction(bool value) {
+        Open = value;
+    }
+
     public void DropItemInstance(RawKey key) {
+        if (!Open) {
+            return;
+        }
         foreach (var VARIABLE in Datas) {
             if (VARIABLE.Raw == key) {
-                GameObject instance = Instantiate(VARIABLE.DropItemTemplate, DropPos);
+                GameObject instance = Instantiate(VARIABLE.DropItemTemplate, DropParent);
+                instance.transform.position = DropPos.position + new Vector3(Random.Range(-800f, 800f), Random.Range(0f, 1000f), 0);
                 instance.GetComponentInChildren<TextMeshProUGUI>().color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), DropAlpha);
+                instance.GetComponent<Rigidbody2D>().gravityScale = Random.Range(10, 100);
+                instance.transform.localScale = Vector3.one * Random.Range(1, 5);
                 instance.SetActive(true);
                 Instances.Add(instance);
             }
+        }
+
+        if (Instances.Count >= DropMax) {
+            foreach (var tmp in Instances) {
+                Destroy(tmp);
+            }
+            Instances.Clear();
         }
     }
 }

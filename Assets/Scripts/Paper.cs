@@ -8,7 +8,7 @@ using SFB; // SimpleFileBrowser插件
 public class Paper : MonoBehaviour {
     public Image targetImage; // 需要设置Sprite的Image组件
     public Button uploadButton;
-
+    public Slider slider;
     private string imageFolderPath;
 
     void Start() {
@@ -21,6 +21,14 @@ public class Paper : MonoBehaviour {
 
         // 加载已保存的图片（可选）
         StartCoroutine(LoadLatestUserImage());
+        
+        slider.onValueChanged.AddListener(OnValueChanged);
+    }
+
+    private void OnValueChanged(float arg0) {
+        Color color = targetImage.color;
+        color.a = arg0;
+        targetImage.color = color;
     }
 
     // 上传图片

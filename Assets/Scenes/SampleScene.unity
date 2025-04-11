@@ -9103,7 +9103,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 454, y: 694}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 73.56, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221780447
 MonoBehaviour:
@@ -13678,10 +13678,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\u4E0A\u4F20"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 70e6b558c8739e944adc890956be5281, type: 2}
+  m_sharedMaterial: {fileID: 404895919662102789, guid: 70e6b558c8739e944adc890956be5281, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

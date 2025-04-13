@@ -8,6 +8,7 @@ using SFB; // SimpleFileBrowser插件
 public class Paper : MonoBehaviour {
     public Image targetImage; // 需要设置Sprite的Image组件
     public Button uploadButton;
+    public Button quitButton;
     public Slider slider;
     private string imageFolderPath;
 
@@ -23,6 +24,16 @@ public class Paper : MonoBehaviour {
         StartCoroutine(LoadLatestUserImage());
         
         slider.onValueChanged.AddListener(OnValueChanged);
+        
+        quitButton.onClick.AddListener(QuitGame);
+    }
+    
+    private void QuitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private void OnValueChanged(float arg0) {

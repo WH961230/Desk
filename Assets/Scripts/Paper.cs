@@ -10,6 +10,7 @@ public class Paper : MonoBehaviour {
     public Button uploadButton;
     public Button quitButton;
     public Slider slider;
+    public Button switchLanguage;
     private string imageFolderPath;
 
     void Start() {
@@ -26,8 +27,14 @@ public class Paper : MonoBehaviour {
         slider.onValueChanged.AddListener(OnValueChanged);
         
         quitButton.onClick.AddListener(QuitGame);
+        
+        switchLanguage.onClick.AddListener(SwitchLanguage);
     }
-    
+
+    private void SwitchLanguage() {
+        LanguageUtil.CheckNextLanguage();
+    }
+
     private void QuitGame() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

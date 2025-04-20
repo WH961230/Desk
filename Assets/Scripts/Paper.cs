@@ -3,14 +3,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
-using SFB; // SimpleFileBrowser插件
+using SFB;
+using TMPro;
 
 public class Paper : MonoBehaviour {
     public Image targetImage; // 需要设置Sprite的Image组件
+    public ChineseCalendar targetLunar;
     public Button uploadButton;
     public Button quitButton;
     public Slider slider;
     public Button switchLanguage;
+    public Button baziButton;
+    private int baziOpen = -1;//0 null 1 bazi 2 tip
     private string imageFolderPath;
 
     void Start() {
@@ -29,6 +33,26 @@ public class Paper : MonoBehaviour {
         quitButton.onClick.AddListener(QuitGame);
         
         switchLanguage.onClick.AddListener(SwitchLanguage);
+
+        Bazi();
+        baziButton.onClick.AddListener(Bazi);
+    }
+
+    private void Bazi() {
+        baziOpen = (baziOpen + 1) % 3;
+        if (baziOpen == 0) {
+            ChineseCalendar.Instance.ActiveZi(false);
+            ChineseCalendar.Instance.ActiveYun(false);
+            ChineseCalendar.Instance.ActiveTip(false);
+        } else if (baziOpen == 1) {
+            ChineseCalendar.Instance.ActiveZi(true);
+            ChineseCalendar.Instance.ActiveYun(true);
+            ChineseCalendar.Instance.ActiveTip(false);
+        } else if (baziOpen == 2) {
+            ChineseCalendar.Instance.ActiveZi(true);
+            ChineseCalendar.Instance.ActiveYun(true);
+            ChineseCalendar.Instance.ActiveTip(true);
+        }
     }
 
     private void SwitchLanguage() {
@@ -47,6 +71,19 @@ public class Paper : MonoBehaviour {
         Color color = targetImage.color;
         color.a = arg0;
         targetImage.color = color;
+
+        foreach (var tmp in targetLunar.calendarData) {
+            Color c = tmp.Value.color;
+            c.a = arg0;
+            tmp.Value.color = c;
+        }
+        
+        foreach (var tmp in targetLunar.calendarTipParent) {
+            TextMeshProUGUI textComponent = tmp.GetComponent<TextMeshProUGUI>();
+            Color c = textComponent.color;
+            c.a = arg0;
+            textComponent.color = c;
+        }
     }
 
     // 上传图片

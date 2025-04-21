@@ -8,6 +8,7 @@ public class ScreenEdgeDetection : MonoBehaviour {
     public static ScreenEdgeDetection Instance;
     public bool IsTopEdge;
     private bool IsTopEdgeLock;
+    private float delayTime;
     private void Awake() {
         Instance = this;
     }
@@ -16,10 +17,21 @@ public class ScreenEdgeDetection : MonoBehaviour {
         Vector2 mousePosition = Input.mousePosition;
         float normalizedY = mousePosition.y / Screen.height;
         IsTopEdge = normalizedY > 1 - edgeThreshold;
+        //顶部触发
         if (IsTopEdge) {
-            OnEnterTopEdge();
+            //计时
+            if (delayTime > 0) {
+                delayTime -= Time.deltaTime;
+            } else {
+                //计时结束触发
+                if (delayTime != 0) {
+                    OnEnterTopEdge();
+                    delayTime = 1;
+                }
+            }
         } else {
             OnExitTopEdge();
+            delayTime = 1;
         }
     }
 

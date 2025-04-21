@@ -12,6 +12,7 @@ public class Paper : MonoBehaviour {
     public Button uploadButton;
     public Button quitButton;
     public Slider slider;
+    public Slider calendarSlider;
     public Button switchLanguage;
     public Button baziButton;
     private int baziOpen = -1;//0 null 1 bazi 2 tip
@@ -21,14 +22,14 @@ public class Paper : MonoBehaviour {
         // 初始化图片存储目录
         imageFolderPath = Path.Combine(Application.persistentDataPath, "UserImages");
         Directory.CreateDirectory(imageFolderPath);
-
         // 绑定按钮事件
         uploadButton.onClick.AddListener(UploadImage);
-
         // 加载已保存的图片（可选）
         StartCoroutine(LoadLatestUserImage());
         
         slider.onValueChanged.AddListener(OnValueChanged);
+        
+        calendarSlider.onValueChanged.AddListener(OnCalendarValueChanged);
         
         quitButton.onClick.AddListener(QuitGame);
         
@@ -36,6 +37,21 @@ public class Paper : MonoBehaviour {
 
         Bazi();
         baziButton.onClick.AddListener(Bazi);
+    }
+
+    private void OnCalendarValueChanged(float arg0) {
+        foreach (var tmp in targetLunar.calendarTipParent) {
+            TextMeshProUGUI textComponent = tmp.GetComponent<TextMeshProUGUI>();
+            Color c = textComponent.color;
+            c.a = arg0;
+            textComponent.color = c;
+        }
+
+        foreach (var tmp in targetLunar.calendarData) {
+            Color c = tmp.Value.color;
+            c.a = arg0;
+            tmp.Value.color = c;
+        }
     }
 
     private void Bazi() {
@@ -71,19 +87,6 @@ public class Paper : MonoBehaviour {
         Color color = targetImage.color;
         color.a = arg0;
         targetImage.color = color;
-
-        foreach (var tmp in targetLunar.calendarData) {
-            Color c = tmp.Value.color;
-            c.a = arg0;
-            tmp.Value.color = c;
-        }
-        
-        foreach (var tmp in targetLunar.calendarTipParent) {
-            TextMeshProUGUI textComponent = tmp.GetComponent<TextMeshProUGUI>();
-            Color c = textComponent.color;
-            c.a = arg0;
-            textComponent.color = c;
-        }
     }
 
     // 上传图片

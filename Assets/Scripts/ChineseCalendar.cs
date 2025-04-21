@@ -30,6 +30,12 @@ public class ChineseCalendar : MonoBehaviour {
         birthdayZiInput.onValueChanged.AddListener(AddBirthday);
     }
 
+    private void Update() {
+        if (Time.frameCount % 60 == 0) {
+            RefreshCalendar();
+        }
+    }
+
     private void AddBirthday(string input) {
         if (IsValidDateTimeString(input)) {
             int year = int.Parse(input.Substring(0, 4));   // 2025
@@ -108,7 +114,7 @@ public class ChineseCalendar : MonoBehaviour {
                 string zi = c[index].ToString();
                 VARIABLE.Value.text = zi;
                 if (ziColorDics.TryGetValue(zi, out ZiColorData data)) {
-                    VARIABLE.Value.color = data.ZiColor;
+                    VARIABLE.Value.color = new Color(data.ZiColor.r, data.ZiColor.g, data.ZiColor.b, VARIABLE.Value.color.a);
                 }
                 break;
             }
